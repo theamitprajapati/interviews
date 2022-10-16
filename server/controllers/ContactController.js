@@ -1,6 +1,6 @@
 const ContactDB = require("../database/contact");
+const TokenDB = require("../database/token");
 const fs = require("fs");
-const path = require("path");
 
 exports.add = (req, res) => {
 
@@ -15,14 +15,15 @@ exports.add = (req, res) => {
 		return res.json({ error: true, message: 'phone field is required ?' });
 	}
 
-	console.log(body)
 	ContactDB.push({ "name": body.name, "phone": body.phone })
-	fs.writeFile(__dirname + '/../database/contact.json', JSON.stringify(ContactDB), err => {
-		// Checking for errors
-		if (err) throw err;
-		res.json({ error: false, message: 'Contact add success!' });
-	});
-
+	try {
+		fs.writeFile(__dirname + '/../database/contact.json', JSON.stringify(ContactDB), err => {
+			if (err) throw err;
+			res.json({ error: false, message: 'Contact add success!' });
+		});
+	} catch (e) {
+		res.json({ error: true, message: e.message });
+	}
 };
 
 exports.details = (req, res) => {
@@ -41,4 +42,12 @@ exports.details = (req, res) => {
 exports.list = (req, res) => {
 	return res.json({ error: false, data: ContactDB });
 }
-exports.sendToken = (req, res) => { return res.json({ error: false, data: [] }); }
+
+exports.listToken = (req, res) => {
+	return res.json({ error: false, data:TokenDB  });
+}
+
+
+exports.sendToken = (req, res) => {
+	return res.json({ error: false, data: [] });
+}
