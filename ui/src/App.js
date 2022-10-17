@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import Home from "./components/Home";
 import Test from "./components/Test";
 import {AddContact,ListContact} from "./pages/contacts";
+import {AddMessage,ListMessage} from "./pages/message";
 import Default from "./Default";
 
 import "semantic-ui-css/semantic.min.css";
@@ -20,8 +21,8 @@ class App extends Component {
               <Route path="/contact/add" exact  element={<AddContact/>} />
               <Route path="/contact/details" exact element={<Test/>} />
               <Route path="/contact/list" exact element={<ListContact/>} />
-              <Route path="/token/send" exact element={<Test/>} />
-              <Route path="/token/list" exact element={<Test/>} />
+              <Route path="/message/send" exact element={<AddMessage/>} />
+              <Route path="/message/list" exact element={<ListMessage/>} />
               <Route element={Default}/>
             </Routes>
           </Layout>

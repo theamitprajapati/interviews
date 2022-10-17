@@ -13,7 +13,7 @@ class ListContact extends Component {
   }
 
   componentDidMount() {
-    Http.get("contact/list")
+    Http.get("message/list")
       .then((res) => {
         console.log(res.data);
         if (res.data.error) {
@@ -24,6 +24,9 @@ class ListContact extends Component {
       .catch((err) => {
         console.log(err.message);
       });
+  }
+  getHumanDate(data){
+   return new Date();
   }
 
   render() {
@@ -44,8 +47,8 @@ class ListContact extends Component {
         <Table celled selectable >
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Phone</Table.HeaderCell>
+              <Table.HeaderCell>Name of Contact</Table.HeaderCell>
+              <Table.HeaderCell>Time Of SMS</Table.HeaderCell>
               <Table.HeaderCell>Message</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -55,35 +58,15 @@ class ListContact extends Component {
               return (
                 <Table.Row>
                   <Table.Cell>
-                    {row.fName} {row.lName}
+                    {row.phone}
                   </Table.Cell>
-                  <Table.Cell>{row.phone}</Table.Cell>
-                  <Table.Cell>
-                    <Button primary to="/contact/add" as={Link}>
-                      Message
-                    </Button>
-                  </Table.Cell>
+                  <Table.Cell>{new Date(row.created_time)}</Table.Cell>
+                  <Table.Cell>{row.message}</Table.Cell>
+                  
                 </Table.Row>
               );
             })}
-            <Table.Row>
-              <Table.Cell>Jamie</Table.Cell>
-              <Table.Cell>Approved</Table.Cell>
-              <Table.Cell>
-                <Button primary to="/contact/add" as={Link}>
-                  Message
-                </Button>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Jill</Table.Cell>
-              <Table.Cell>Denied</Table.Cell>
-              <Table.Cell>
-                <Button primary to="/contact/add" as={Link}>
-                  Message
-                </Button>
-              </Table.Cell>
-            </Table.Row>
+            
           </Table.Body>
         </Table>
       </Container>
