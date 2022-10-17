@@ -1,5 +1,10 @@
 [
 	{
+		"fName": "Amit",
+		"lName": "Prajapati",
+		"phone": "9628281021"
+	},
+	{
 		"fName": "A",
 		"lName": "Kumar",
 		"phone": "123"
@@ -14,5 +19,4 @@
 		"lName": "Kumar",
 		"phone": "789"
 	}
-	
 ]

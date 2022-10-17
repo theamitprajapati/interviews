@@ -5,4 +5,5 @@ router.get('/contact/details/:phone', ContactController.details);
 router.get('/contact/list', ContactController.list);
 router.post('/message/send', ContactController.sendMessage);
 router.get('/message/list', ContactController.listMessage);
+router.get('/sms/smsCallback', ContactController.smsCallback);
 module.exports = router;
