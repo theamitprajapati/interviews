@@ -1,17 +1,9 @@
 [
 	{
-		"phone": "9628281021",
-		"message": "d",
-		"created_time": 1666006306180
-	},
-	{
-		"phone": "9628281021",
-		"message": "b",
-		"created_time": 1666006304025
-	},
-	{
-		"phone": "9628281021",
-		"message": "a",
-		"created_time": 1666006302259
+		"name": "B Kumar",
+		"otp": 624054,
+		"phone": "456",
+		"message": "Hi,Your OTP is:624054d624054d624054d624054d624054d624054d624054d624054d624054d624054d624054d624054d",
+		"created_time": 1666021343322
 	}
 ]

@@ -15,12 +15,30 @@ class AddContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone: "9628281021",
-      message: "",
-      fieldError: false,
+      phone: (new URLSearchParams(window.location.search)).get("phone"),
+      name:"",
+      otp:this.getOtp(),
+      message:"Hi,Your OTP is:",
       errorMessage: "",
       successMessage: "",
     };
+  }
+  getOtp() { 
+    return Math.floor(100000 + Math.random() * 900000);
+  }
+
+  componentDidMount() {
+  
+    Http.get("contact/details/"+this.state.phone)
+      .then((res) => {
+        if (res.data.error) {
+          return this.setState({ errorMessage: res.data.message });
+        }
+        this.setState({ name: `${res.data.data.fName} ${res.data.data.lName}` });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
   handleChange = (e) => {
@@ -30,31 +48,28 @@ class AddContact extends Component {
     this.setState({ [name]: value, fieldError: false, successMessage: "" });
   };
   submit = (e) => {
-    this.setState({ successMessage: "" });
+    this.setState({ successMessage: "",errorMessage:'' });
     const phone = this.state.phone;
 
     if (!phone) {
       this.setState({
-        fieldError: true,
-        errorMessage: "phone number is required",
+        errorMessage: "Phone number is required",
       });
       return;
     }
-    if (phone.length != 10) {
-      this.setState({ fieldError: true, errorMessage: "Invalid Phone Number" });
-      return;
-    }
+    // if (phone.length != 10) {
+    //   this.setState({ fieldError: true, errorMessage: "Invalid Phone Number" });
+    //   return;
+    // }
     this.setState({ successMessage: "" });
     Http.post("message/send", this.state)
       .then((res) => {
-        console.log(res.data);
         if (res.data.error) {
           return this.setState({
-            fieldError: true,
             errorMessage: res.data.message,
           });
         }
-        this.setState({ successMessage: res.data.message });
+        this.setState({ successMessage: res.data.message,otp:this.getOtp() });
         e.target.reset();
       })
       .catch((err) => {
@@ -66,55 +81,26 @@ class AddContact extends Component {
     return (
       <Container text style={{ marginTop: "2em" }}>
         <div style={{ paddingBottom: "3em" }}>
-          <Button floated="right" color="red" to="/contact/list" as={Link}>
+          <Button floated="right" color="red" to={`/contact/details?phone=${this.state.phone}`} as={Link}>
             Back
           </Button>
-        </div>
-        {/* <Breadcrumb>
-    <Breadcrumb.Section link>Home</Breadcrumb.Section>
-    <Breadcrumb.Divider icon='right arrow' />
-    <Breadcrumb.Section active>Add Contact</Breadcrumb.Section>
-  </Breadcrumb> */}
-        {this.state.successMessage && (
-          <Message color="green" size="mini">
-            {this.state.successMessage}
-          </Message>
-        )}
-        {this.state.fieldError && (
-          <Message color="red" size="mini">
-            {this.state.errorMessage}
-          </Message>
-        )}
+        </div> 
+        {this.state.errorMessage && <Message color="red" size='mini'>{this.state.errorMessage}</Message>}
+        {this.state.successMessage && <Message color="green" size='mini'>{this.state.successMessage}</Message>}
+        {!this.state.errorMessage &&
         <Form>
           <Grid>
             <Grid.Row>
               <Grid.Column>
-                <Form.Field>
-                  <label>Phone</label>
-
-                  <Input
-                    required="required"
-                    pattern="[1-9]{1}[0-9]{9}"
-                    type="tel"
-                    name="phone"
-                    value={this.state.phone}
-                    placeholder="Enter Phone"
-                    title="Invalid Phone Number Example:9628281021"
-                    onChange={this.handleChange}
-                  />
-                  <small>Phone number should be 10 digit</small>
-                </Form.Field>
-
-                <Form.Field>             
-
                   <Form.Field
                   name="message"
                     control={TextArea}
                     label="Message"
+                    required="required"
+                    value={this.state.message + this.state.otp}
                     placeholder="Enter Message"
                     onChange={this.handleChange}
                   />
-                </Form.Field>
               </Grid.Column>
             </Grid.Row>
 
@@ -128,6 +114,7 @@ class AddContact extends Component {
             </Grid.Row>
           </Grid>
         </Form>
+  }
       </Container>
     );
   }

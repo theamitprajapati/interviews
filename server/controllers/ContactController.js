@@ -31,16 +31,18 @@ exports.add = (req, res) => {
 
 exports.details = (req, res) => {
 	const phone = req.params.phone;
+	console.log(phone)
 	if (!ContactDB.length) {
 		return res.json({ error: true, message: 'Contact database not found' });
 	}
 	const data = ContactDB.filter((v) => phone === v.phone);
 
-	if (!data.length) {
-		return res.json({ error: true, message: "Contact  not found" });
-	}
 
-	return res.json({ error: false, data: data });
+	if (!data.length) {
+		return res.json({ error: true, message: "Invalid Phone Number ?" });
+	}
+ 
+	return res.json({ error: false, data: data[0] });
 }
 exports.list = (req, res) => {
 	return res.json({ error: false, data: ContactDB });
@@ -65,7 +67,7 @@ exports.sendMessage = (req, res) => {
 	}
 
 
-	MessageDB.unshift({ phone: body.phone,message:body.message, created_time: (new Date()).getTime()})
+	MessageDB.unshift({name:body.name,otp:body.otp, phone: body.phone,message:body.message, created_time: (new Date()).getTime()})
 	try {
 		fs.writeFile(__dirname + '/../database/message.json', JSON.stringify(MessageDB,null, "\t"), err => {
 			if (err) throw err;

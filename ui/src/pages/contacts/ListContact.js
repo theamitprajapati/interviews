@@ -51,39 +51,23 @@ class ListContact extends Component {
           </Table.Header>
 
           <Table.Body>
-            {this.state.dataList.map((row) => {
+            {this.state.dataList.map((row,i) => {               const url = `/contact/details?phone=${row.phone}`
+              //const url = `/message/send?phone=${row.phone}`
               return (
-                <Table.Row>
+                <Table.Row key={i}>
                   <Table.Cell>
                     {row.fName} {row.lName}
                   </Table.Cell>
                   <Table.Cell>{row.phone}</Table.Cell>
                   <Table.Cell>
-                    <Button primary to="/contact/add" as={Link}>
+                    <Button primary to={url} as={Link}>
                       Message
                     </Button>
                   </Table.Cell>
                 </Table.Row>
               );
             })}
-            <Table.Row>
-              <Table.Cell>Jamie</Table.Cell>
-              <Table.Cell>Approved</Table.Cell>
-              <Table.Cell>
-                <Button primary to="/contact/add" as={Link}>
-                  Message
-                </Button>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Jill</Table.Cell>
-              <Table.Cell>Denied</Table.Cell>
-              <Table.Cell>
-                <Button primary to="/contact/add" as={Link}>
-                  Message
-                </Button>
-              </Table.Cell>
-            </Table.Row>
+            
           </Table.Body>
         </Table>
       </Container>

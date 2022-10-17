@@ -26,7 +26,9 @@ class ListContact extends Component {
       });
   }
   getHumanDate(data){
-   return new Date();
+   const date =  new Date(data);
+   console.log(data);
+   return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
   }
 
   render() {
@@ -38,12 +40,7 @@ class ListContact extends Component {
             {this.state.message}
           </Message>
         )}
-        <div style={{ paddingBottom: "2em" }}>
-         
-          <Button floated="right" color="violet" to="/contact/add" as={Link}>
-            Add Contact
-          </Button>
-        </div>
+       
         <Table celled selectable >
           <Table.Header>
             <Table.Row>
@@ -54,15 +51,12 @@ class ListContact extends Component {
           </Table.Header>
 
           <Table.Body>
-            {this.state.dataList.map((row) => {
+            {this.state.dataList.map((row,i) => {
               return (
                 <Table.Row>
-                  <Table.Cell>
-                    {row.phone}
-                  </Table.Cell>
-                  <Table.Cell>{new Date(row.created_time)}</Table.Cell>
-                  <Table.Cell>{row.message}</Table.Cell>
-                  
+                  <Table.Cell>{row.name}</Table.Cell>
+                  <Table.Cell>{this.getHumanDate(row.created_time)}</Table.Cell>
+                  <Table.Cell>{row.message}{row.otp}</Table.Cell>                  
                 </Table.Row>
               );
             })}
