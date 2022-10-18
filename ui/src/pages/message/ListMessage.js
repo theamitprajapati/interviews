@@ -56,7 +56,7 @@ class ListContact extends Component {
                 <Table.Row>
                   <Table.Cell>{row.name}</Table.Cell>
                   <Table.Cell>{this.getHumanDate(row.created_time)}</Table.Cell>
-                  <Table.Cell>{row.message}{row.otp}</Table.Cell>                  
+                  <Table.Cell>{row.message}</Table.Cell>                  
                 </Table.Row>
               );
             })}
