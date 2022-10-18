@@ -61,25 +61,7 @@ exports.smsCallback = (req, res) => {
 }
 
 
-function sendSMS(){
-	client.messages.create({
-		body: "xxxxxxxxxxxx",
-		from: '+19412001459',
-		to: '+919628281021',
-		messagingServiceSid: 'MG6787a064cd862049ba02b115fc36b9e8',
-	})
-		.then((response, ed) => {
-			console.log(response, '@@@@@@@@@@@@', ed)
-		})
-		.catch((err) => console.log(err.message))
-		.done();
-}
-
 exports.sendMessage = (req, res) => {
-
-	sendSMS();
-
-
 
 	if (!req.body) {
 		return res.json({ error: true, message: 'Phone Number and Message is required ?' });
@@ -96,14 +78,29 @@ exports.sendMessage = (req, res) => {
 
 	MessageDB.unshift({ name: body.name, otp: body.otp, phone: body.phone, message: body.message, created_time: (new Date()).getTime() })
 
+	
+		 
 
 	try {
-		//send message here 
-		fs.writeFile(__dirname + '/../database/message.json', JSON.stringify(MessageDB, null, "\t"), err => {
-			if (err) throw err;
-			res.json({ error: false, message: 'Message sent success!!!' });
-		});
+		
+		res.header('Content-Type', 'application/json');
+			console.log('puneet')
+	client.messages.create({
+		body: "hell amit",
+		from: '+19412001459',
+		to: '+919628281021',
+		messagingServiceSid: 'MG6787a064cd862049ba02b115fc36b9e8',
+	})
+		.then((response, ed) => {
+			fs.writeFile(__dirname + '/../database/message.json', JSON.stringify(MessageDB, null, "\t"), function(err) {
+				if (err){ throw err};	
+				return res.json({ error: false, message: 'Message sent success!!!' });		
+			});
+		})
+		.catch((err) => console.log(err.message))
+		.done();
+		
 	} catch (e) {
-		res.json({ error: true, message: e.message });
+		return res.json({ error: true, message: e.message });
 	}
 }

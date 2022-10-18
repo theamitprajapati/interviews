@@ -31,6 +31,9 @@ app.use(require('./routes/contactRoute'));
 
 
 app.get('/', (req, res) => {
+
+   
+
     return res.json({
     	error: false,
     	data: 'OK' 

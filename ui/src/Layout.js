@@ -26,8 +26,8 @@ import {
         <Dropdown item simple text='First Menu Option'>
           <Dropdown.Menu>
             <Dropdown.Item  to="/contact/list" as={Link}>List of Contacts</Dropdown.Item>
-            <Dropdown.Item  to="/contact/info" as={Link}>Contact Info Page</Dropdown.Item>
-            <Dropdown.Item  to="/message/send" as={Link}>New Message Screen (Compose)</Dropdown.Item>
+            {/* <Dropdown.Item  to="/contact/info" as={Link}>Contact Info Page</Dropdown.Item>
+            <Dropdown.Item  to="/message/send" as={Link}>New Message Screen (Compose)</Dropdown.Item> */}
           </Dropdown.Menu>
         </Dropdown>     
         <Dropdown item simple text='Second Menu Option'>
