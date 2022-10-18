@@ -45,6 +45,7 @@ class AddContact extends Component {
     this.setState({ [name]: value, fieldError: false, successMessage: "" });
   };
   submit = (e) => {
+    e.preventDefault();
     this.setState({ successMessage: "",errorMessage:'' });
     const phone = this.state.phone;
 
@@ -70,6 +71,7 @@ class AddContact extends Component {
         
       })
       .catch((err) => {
+        this.setState({ errorMessage: err });
         console.log(err.message);
       });
   };

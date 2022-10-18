@@ -9,7 +9,7 @@ class AddContact extends Component {
     this.state = {
       fName: "",
       lName: "",
-      phone: "9628281021",
+      phone: "",
       fieldError:false,
       errorMessage:'',
       successMessage:'',
@@ -23,6 +23,7 @@ class AddContact extends Component {
     this.setState({ [name]: value,fieldError:false,successMessage:'' });
   };
   submit = (e) => {
+    e.preventDefault();
     this.setState({successMessage:'' });
     const phone = this.state.phone;
     const fName = this.state.fName;
@@ -39,15 +40,15 @@ class AddContact extends Component {
     this.setState({successMessage:''});
     Http.post("contact/add",this.state)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.message);
         if(res.data.error){
           return this.setState({fieldError:true,errorMessage:res.data.message});          
         }
         this.setState({successMessage:res.data.message});
-        e.target.reset();
 
       })
       .catch((err) => {
+        return this.setState({fieldError:true,errorMessage:err});
         console.log(err.message);
       });
   };
