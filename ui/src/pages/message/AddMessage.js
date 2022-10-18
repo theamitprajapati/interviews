@@ -6,7 +6,6 @@ import {
   Button,
   Grid,
   Message,
-  TextArea,
 } from "semantic-ui-react";
 import Http from "../../utils/Http";
 import { Link } from "react-router-dom";

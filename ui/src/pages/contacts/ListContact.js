@@ -22,6 +22,7 @@ class ListContact extends Component {
         this.setState({ dataList: res.data.data });
       })
       .catch((err) => {
+        this.setState({ message: err });
         console.log(err.message);
       });
   }
