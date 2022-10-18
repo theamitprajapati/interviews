@@ -1,23 +1,15 @@
 import React from 'react'
 import {
   Container,
-  Divider,
-  Dropdown,
-  Grid,
   Header,
-  Image,
-  List,
-  Menu,
-  Segment,
 } from 'semantic-ui-react';
-import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
-const FixedMenuLayout = () => (
+const Default = () => (
   <div>    
-    <Container text style={{ marginTop: '15em' }}>
-      <Header as='h1'>Page Not Found</Header>     
+    <Container text style={{ marginTop: '7em' }}>
+      <Header>404 Page Not Found</Header>     
     </Container>
   </div>
 )
 
-export default FixedMenuLayout
+export default Default

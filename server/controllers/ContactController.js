@@ -1,10 +1,8 @@
+require('dotenv').config()
 const ContactDB = require("../database/contact");
 const MessageDB = require("../database/message");
 const fs = require("fs");
-const accountSid = 'AC082ef748161cee47acb7446dc4d75e3f';
-const authToken = 'c16f81e3515ed2971a3b6a45247a1a34';
-const client = require('twilio')(accountSid, authToken, { logLevel: 'debug' });
-
+const client = require('twilio')(process.env.TWILLIO_ACCOUNT_ID, process.env.TWILLIO_AUTH_TOKEN, { logLevel: 'debug' });
 exports.add = (req, res) => {
 
 	if (!req.body) {
@@ -75,21 +73,16 @@ exports.sendMessage = (req, res) => {
 		return res.json({ error: true, message: 'Phone is required ?' });
 	}
 
-
 	MessageDB.unshift({ name: body.name, otp: body.otp, phone: body.phone, message: body.message, created_time: (new Date()).getTime() })
-
-	
-		 
-
 	try {
 		
 		res.header('Content-Type', 'application/json');
 			console.log('puneet')
 	client.messages.create({
 		body: body.message,
-		from: '+19412001459',
+		//from: '+19412001459',
 		to: '+91'+body.phone,
-		messagingServiceSid: 'MG6787a064cd862049ba02b115fc36b9e8',
+		messagingServiceSid: process.env.TWILLIO_MESSAGE_SERVICE_SID,
 	})
 		.then((response, ed) => {
 			fs.writeFile(__dirname + '/../database/message.json', JSON.stringify(MessageDB, null, "\t"), function(err) {

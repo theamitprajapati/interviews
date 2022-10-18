@@ -14,12 +14,9 @@ import {
  function Layout(props) {
 
     const {children } = props
-
-
-    console.log(children)
   return <div>  <Menu  inverted>
       <Container>
-        <Menu.Item as='a' header>
+        <Menu.Item to="/" as={Link} header>
           <Image size='mini' src='https://react.semantic-ui.com/logo.png' style={{ marginRight: '1.5em' }} />
           Contacts Web App
         </Menu.Item>             

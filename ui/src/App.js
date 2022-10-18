@@ -18,13 +18,13 @@ class App extends Component {
         <Router>
           <Layout>
             <Routes>
-              <Route path="/"  element={<Suspense fallback={<div>Loading...</div>}><Home/>  </Suspense>} />
+              <Route path="/"  element={<Home/>} />
               <Route path="/contact/add" exact  element={<AddContact/>} />
               <Route path="/contact/details" exact element={<DetailsContact/>} />
               <Route path="/contact/list" exact element={<ListContact/>} />
               <Route path="/message/send" exact element={<AddMessage/>} />
               <Route path="/message/list" exact element={<ListMessage/>} />
-              <Route element={Default}/>
+              <Route path="*" element={<Default/>}/>
             </Routes>
           </Layout>
         </Router>
