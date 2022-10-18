@@ -9,6 +9,13 @@ app.use(cors({origin: '*'}));
 app.use(require('./routes/contactRoute'));
 require('dotenv').config()
 
+
+
+
+
+
+
+
 app.get('/', (req, res) => {
 
    
