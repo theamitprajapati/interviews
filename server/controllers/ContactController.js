@@ -96,7 +96,7 @@ exports.sendMessage = (req, res) => {
   });
   try {
     res.header("Content-Type", "application/json");
-	console.log(client)
+
     client.messages
       .create({
         body: body.message,
