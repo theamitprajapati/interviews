@@ -86,7 +86,7 @@ exports.sendMessage = (req, res) => {
 		res.header('Content-Type', 'application/json');
 			console.log('puneet')
 	client.messages.create({
-		body: body.message+body.otp,
+		body: body.message,
 		from: '+19412001459',
 		to: '+91'+body.phone,
 		messagingServiceSid: 'MG6787a064cd862049ba02b115fc36b9e8',
