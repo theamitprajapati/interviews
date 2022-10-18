@@ -10,21 +10,19 @@ import {
 } from "semantic-ui-react";
 import Http from "../../utils/Http";
 import { Link } from "react-router-dom";
-
+const OTP = Math.floor(100000 + Math.random() * 900000)
 class AddContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
       phone: (new URLSearchParams(window.location.search)).get("phone"),
       name:"",
-      otp:this.getOtp(),
-      message:"Hi,Your OTP is:",
+      otp:OTP,
+      message:"Hi,Your OTP is:"+OTP,
       errorMessage: "",
       successMessage: "",
+      title:false
     };
-  }
-  getOtp() { 
-    return Math.floor(100000 + Math.random() * 900000);
   }
 
   componentDidMount() {
@@ -69,8 +67,8 @@ class AddContact extends Component {
             errorMessage: res.data.message,
           });
         }
-        this.setState({ successMessage: res.data.message,otp:this.getOtp() });
-        e.target.reset();
+        this.setState({ successMessage: res.data.message,otp:OTP,title:true });
+        
       })
       .catch((err) => {
         console.log(err.message);
@@ -87,29 +85,27 @@ class AddContact extends Component {
         </div> 
         {this.state.errorMessage && <Message color="red" size='mini'>{this.state.errorMessage}</Message>}
         {this.state.successMessage && <Message color="green" size='mini'>{this.state.successMessage}</Message>}
-        {!this.state.errorMessage &&
+        {!this.state.errorMessage && 
         <Form>
           <Grid>
             <Grid.Row>
               <Grid.Column>
-                  <Form.Field
-                  name="message"
-                    control={TextArea}
-                    label="Message"
+              <Form.Field>
+                  <label>Message</label>
+                  <Input                    
                     required="required"
-                    value={this.state.message + this.state.otp}
-                    placeholder="Enter Message"
                     onChange={this.handleChange}
+                    name="message"
+                    value={this.state.message}
+                    placeholder="Enter Message"
                   />
+                </Form.Field>
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row>
               <Grid.Column>
-                <Button type="reset">Reset</Button>
-                <Button color="green" type="submit" onClick={this.submit}>
-                  Send
-                </Button>
+                <Button color="green" type="submit" onClick={this.submit}>{this.state.title?'Re-Send':'Send'}</Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>
