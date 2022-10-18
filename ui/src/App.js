@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import Test from "./components/Test";
 import {AddContact,ListContact,DetailsContact} from "./pages/contacts";
 import {AddMessage,ListMessage} from "./pages/message";
-import Default from "./Default";
+// import Default from "./Default";
 
 import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
@@ -24,7 +24,7 @@ class App extends Component {
               <Route path="/contact/list" exact element={<ListContact/>} />
               <Route path="/message/send" exact element={<AddMessage/>} />
               <Route path="/message/list" exact element={<ListMessage/>} />
-              <Route path="*" element={<Default/>}/>
+              {/* <Route path="*" element={<Default/>}/> */}
             </Routes>
           </Layout>
         </Router>

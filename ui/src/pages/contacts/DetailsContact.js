@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import {
   Container,
   Form,
-  Input,
   Button,
   Grid,
   Message,
-  TextArea,
 } from "semantic-ui-react";
 import Http from "../../utils/Http";
 import { Link } from "react-router-dom";
@@ -17,15 +15,11 @@ class DetailsContact extends Component {
     this.state = {
       phone: (new URLSearchParams(window.location.search)).get("phone"),
       name:"",
-      otp:this.getOtp(),
       message:"Hi,Your OTP is:",
       errorMessage: "",
       successMessage: "",
       contact:{fName:'',lName:'',phone:''}
     };
-  }
-  getOtp() { 
-    return Math.floor(100000 + Math.random() * 900000);
   }
 
   componentDidMount() {
@@ -70,7 +64,7 @@ class DetailsContact extends Component {
             errorMessage: res.data.message,
           });
         }
-        this.setState({ successMessage: res.data.message,otp:this.getOtp() });
+        this.setState({ successMessage: res.data.message });
         e.target.reset();
       })
       .catch((err) => {
@@ -79,8 +73,6 @@ class DetailsContact extends Component {
   };
 
   render() {
-
-    console.log(this.state,'................')
     return (
       <Container text style={{ marginTop: "2em" }}>
         <div style={{ paddingBottom: "3em" }}>

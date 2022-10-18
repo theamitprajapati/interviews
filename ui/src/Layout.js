@@ -1,20 +1,15 @@
 import React from "react";
 import {
     Container,
-    Button,
     Dropdown,
-    Grid,
-    Header,
     Image,
-    List,
-    Menu,
-    Segment,
+    Menu
   } from 'semantic-ui-react';
   import {Link} from 'react-router-dom';
  function Layout(props) {
 
     const {children } = props
-  return <div>  <Menu  inverted>
+  return <div>  <Menu  inverted style={{borderRadius:"0"}}>
       <Container>
         <Menu.Item to="/" as={Link} header>
           <Image size='mini' src='https://react.semantic-ui.com/logo.png' style={{ marginRight: '1.5em' }} />
