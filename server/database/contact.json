@@ -1,27 +1,12 @@
 [
 	{
-		"fName": "Punnet ",
-		"lName": "Kumar",
-		"phone": "6394760010"
-	},
-	{
 		"fName": "Amit",
 		"lName": "Prajapati",
 		"phone": "9628281021"
 	},
 	{
-		"fName": "A",
+		"fName": "Test",
 		"lName": "Kumar",
-		"phone": "123"
-	},
-	{
-		"fName": "B",
-		"lName": "Kumar",
-		"phone": "456"
-	},
-	{
-		"fName": "C",
-		"lName": "Kumar",
-		"phone": "789"
+		"phone": "9234567895"
 	}
 ]
