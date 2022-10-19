@@ -1,5 +1,10 @@
 [
 	{
+		"phone": "9628281021",
+		"message": "Hello message with jest",
+		"created_time": 1666200136259
+	},
+	{
 		"name": "Amit Prajapati",
 		"otp": 614644,
 		"phone": "9628281021",

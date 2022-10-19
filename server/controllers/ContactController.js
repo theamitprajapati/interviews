@@ -46,7 +46,6 @@ exports.add = (req, res) => {
 
 exports.details = (req, res) => {
   const phone = req.params.phone;
-  console.log(phone);
   if (!ContactDB.length) {
     return res.json({ error: true, message: "Contact database not found" });
   }
@@ -67,7 +66,6 @@ exports.listMessage = (req, res) => {
 };
 
 exports.smsCallback = (req, res) => {
-  console.log(res.body, res.query);
   return res.json({ error: false, data: 3 });
 };
 
