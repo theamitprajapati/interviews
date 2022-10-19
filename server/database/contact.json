@@ -1,5 +1,6 @@
 [
 	{
+<<<<<<< HEAD
 		"fName": "John",
 		"lName": "Smith",
 		"phone": "9628281021"
@@ -43,6 +44,11 @@
 		"fName": "Punnet ",
 		"lName": "Kumar",
 		"phone": "6394760010"
+=======
+		"fName": "Demo",
+		"lName": "Lastname",
+		"phone": "9632587410"
+>>>>>>> d61f4233e1ec6d0d9b6441ea2987eca4b6ff29d7
 	},
 	{
 		"fName": "Amit",
@@ -50,18 +56,8 @@
 		"phone": "9628281021"
 	},
 	{
-		"fName": "A",
+		"fName": "Test",
 		"lName": "Kumar",
-		"phone": "123"
-	},
-	{
-		"fName": "B",
-		"lName": "Kumar",
-		"phone": "456"
-	},
-	{
-		"fName": "C",
-		"lName": "Kumar",
-		"phone": "789"
+		"phone": "9234567895"
 	}
 ]

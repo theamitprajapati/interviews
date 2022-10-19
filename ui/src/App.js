@@ -1,8 +1,7 @@
-import React, { Component ,Suspense} from "react";
+import React, { Component} from "react";
 import "./App.css";
 import Layout from "./Layout";
 import Home from "./components/Home";
-import Test from "./components/Test";
 import {AddContact,ListContact,DetailsContact} from "./pages/contacts";
 import {AddMessage,ListMessage} from "./pages/message";
 // import Default from "./Default";

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Container, Table, Message, Button } from "semantic-ui-react";
+import { Container, Table, Message } from "semantic-ui-react";
 import Http from "../../utils/Http";
-import { Link } from "react-router-dom";
 
 class ListContact extends Component {
   constructor(props) {
@@ -22,6 +21,7 @@ class ListContact extends Component {
         this.setState({ dataList: res.data.data });
       })
       .catch((err) => {
+        this.setState({ message: err });
         console.log(err.message);
       });
   }
@@ -56,7 +56,7 @@ class ListContact extends Component {
                 <Table.Row>
                   <Table.Cell>{row.name}</Table.Cell>
                   <Table.Cell>{this.getHumanDate(row.created_time)}</Table.Cell>
-                  <Table.Cell>{row.message}{row.otp}</Table.Cell>                  
+                  <Table.Cell>{row.message}</Table.Cell>                  
                 </Table.Row>
               );
             })}
